@@ -1,34 +1,15 @@
 package go.skypro.homeworkcollectionsheetsandsets;
 
-import org.springframework.stereotype.Service;
+import go.skypro.homeworkcollectionsheetsandsets.Employee;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
-@Service
-public class EmployeeService {
+public interface EmployeeService {
+    Employee add(String firstName, String lastName);
 
-    List <Employee> employees = new ArrayList(List.of(
-            new Employee("Ivan", "Ivanov"),
-            new Employee("Петр", "Петров"),
-            new Employee("Игорь", "Афанасьев"),
-            new Employee("Геннадий", "Кашин"),
-            new Employee("Никита", "Глазов"),
-            new Employee("Арсений", "Быстров"),
-            new Employee("Николай", "Зеленоглазов"),
-            new Employee("Владимир", "Куценко"),
-            new Employee("Иван", "Быков"),
-            new Employee("Родион", "Николаев")
-    ));
+    Employee remove(String firstName, String lastName);
 
-    public void add() {
+    Employee find(String firstName, String lastName);
 
-    }
-    public void remove() {
-
-    }
-
-    public void find() {
-
-    }
+    Collection<Employee> returnList();
 }

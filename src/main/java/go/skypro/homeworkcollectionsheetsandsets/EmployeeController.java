@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collection;
+
 @RequestMapping("/employee")
 @RestController
 public class EmployeeController {
@@ -14,26 +16,27 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
-    @GetMapping("/returnList")
-    public String returnList() {
-        return "Список сотрудников" + employeeService.employees;
-    }
-
     @GetMapping("/add")
-    public String add(@RequestParam("firstName") String firstName,
-                      @RequestParam("lastName") String lastName) {
-        return "Добавить";
+    public Employee add(@RequestParam String firstName,
+                        @RequestParam String lastName) {
+        return employeeService.add(firstName, lastName);
+
     }
 
     @GetMapping("/remove")
-    public String remove(@RequestParam("firstName") String firstName,
-                         @RequestParam("lastName") String lastName) {
-        return "Удалить";
+    public Employee remove(@RequestParam String firstName,
+                           @RequestParam String lastName) {
+        return employeeService.remove(firstName, lastName);
     }
 
     @GetMapping("/find")
-    public String find(@RequestParam("firstName") String firstName,
-                       @RequestParam("lastName") String lastName) {
-        return "Найти";
+    public Employee find(@RequestParam String firstName,
+                         @RequestParam String lastName) {
+        return employeeService.find(firstName, lastName);
+    }
+
+    @GetMapping("/returnList")
+    public Collection<Employee> returnList() {
+        return employeeService.returnList();
     }
 }
